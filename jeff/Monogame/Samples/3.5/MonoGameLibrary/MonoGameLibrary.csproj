@@ -132,6 +132,7 @@
     <None Include="Content\Assets\Textures\CatTexture.tga" />
     <None Include="Content\Assets\Textures\checker.tga" />
     <None Include="Content\Assets\Textures\DogTexture.tga" />
+    <None Include="UtilClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Assets\obj\PSM\TempPE\" />

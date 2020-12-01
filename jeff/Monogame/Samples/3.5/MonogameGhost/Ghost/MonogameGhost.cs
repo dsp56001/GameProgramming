@@ -41,6 +41,8 @@ namespace MonogameGhost.Ghost
             this.ghost.State = GhostState.Roving;
             
             r = new Random();
+
+
         }
 
         /// <summary>
@@ -68,18 +70,20 @@ namespace MonogameGhost.Ghost
             base.LoadContent();
         }
 
+        const float turnAmount = .04f;
+
         /// <summary>
         /// Allows the game component to update itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            float turnAmount = .04f;
+            
 
             switch (this.ghost.State)
             {
                 case GhostState.Dead:
-
+                    
                     //TODO Dead moving and dead animation.
                     //Until then
                     this.ghost.State = GhostState.Roving;

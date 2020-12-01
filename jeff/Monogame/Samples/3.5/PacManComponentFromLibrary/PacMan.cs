@@ -18,10 +18,15 @@ namespace PacManComponentFromLibrary
     {
         int playerIndex; //player index for controller
 
+
+        //Dependancy
         //Services
         InputHandler input;  //denendacy
+        GameConsole console;
+        ScoreService score;
         
-        
+
+        //Dependancy
         public PacMan(Game game)
             : base(game)
         {
@@ -39,6 +44,13 @@ namespace PacManComponentFromLibrary
                 //throw new Exception("PacMan Depends on Input service please add input service before you add PacMan.");
             }
 
+            console = (GameConsole)game.Services.GetService<IGameConsole>();
+            if(console == null) //first
+            {
+                console = new GameConsole(game);
+                game.Components.Add(console);
+            }
+
            
         }
 
@@ -52,9 +64,14 @@ namespace PacManComponentFromLibrary
         protected override void LoadContent()
         {
             this.spriteTexture = this.Game.Content.Load<Texture2D>("pacManSingle");
-            
+
+            console.GameConsoleWrite("PacMan: Loaded Texture");
+
             this.Location = new Vector2(300, 300);
             this.Speed = 100;
+
+            console.GameConsoleWrite("PacMan: set location" + this.Location);
+            console.GameConsoleWrite("PacMan: set speed" + this.Speed);
 
             base.LoadContent(); //in the middle
 
@@ -184,7 +201,13 @@ namespace PacManComponentFromLibrary
             }
             #endregion
 #endif
-        
+            
+
+            
+                console.DebugTextOutput["PacManLocation"] =  this.Location.ToString();
+                console.DebugTextOutput["PacManSpeed"] = this.Speed.ToString();
+
+
 
         }
 

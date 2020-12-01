@@ -139,6 +139,7 @@ namespace AudioSimple
                             if (pacChompInstance == null) //lazy load 
                             {
                                 pacChompInstance = pacChomp.CreateInstance();
+       
                                 pacChompInstance.IsLooped = true;
                             }
                             if (pacChompInstance.State == SoundState.Stopped)

@@ -64,7 +64,7 @@ namespace StrategyPacMan.weapons
             }
         }
 
-        public string Use()
+        public virtual string Use()
         {
             throw new NotImplementedException();
         }

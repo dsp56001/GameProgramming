@@ -17,8 +17,8 @@ namespace StrategyPacMan.weapons
         public TealWeapon(Game game)
             : base(game)
         {
-            this.Name = "red weapon";
-            this.Verb = "rec chomp";
+            this.Name = "teal weapon";
+            this.Verb = "teal chomp";
             this.color = Color.Teal;
         }
     }

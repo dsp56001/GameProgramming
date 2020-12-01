@@ -3,39 +3,44 @@
   <Class Name="PacManGameComponent.PacMan">
     <Position X="3.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAgAAAAAAAAAAIAAAAAAAggAAAIAAAAAAAAAQ=</HashCode>
+      <HashCode>AAQAAAAAgAAAAAAAAAAIAAAAAAAggBAAIAAAAAAAAAQ=</HashCode>
       <FileName>PacMan.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PacManGameComponent.PacManWInputController">
-    <Position X="6.25" Y="0.75" Width="1.5" />
+    <Position X="5.75" Y="0.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQEAAAAAAAAAAAAAgAgAAAAAAAAAAAA=</HashCode>
       <FileName>PacManWInputController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PacManGameComponent.PlayerController">
-    <Position X="8.5" Y="0.5" Width="1.5" />
+    <Position X="8" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>BAQQiAIQAAAAAAAAECKgAAAAEAAAABAAAAAAAEAAAQA=</HashCode>
       <FileName>PlayerController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MonoGameLibrary.Util.InputHandler" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="10.5" Y="0.5" Width="1.5" />
+  <Class Name="MonoGameLibrary.Util.InputHandler" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="3.5" Width="2" />
+    <NestedTypes>
+      <Enum Name="MonoGameLibrary.Util.InputHandler.ButtonType" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier />
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="MonoGameLibrary.Util.GamePadHandler" Collapsed="true">
-    <Position X="10.5" Y="1.5" Width="1.5" />
+  <Class Name="MonoGameLibrary.Util.GamePadHandler">
+    <Position X="12.5" Y="3.5" Width="2" />
     <TypeIdentifier />
   </Class>
-  <Class Name="MonoGameLibrary.Util.KeyboardHandler" Collapsed="true">
-    <Position X="10.5" Y="2.5" Width="1.5" />
+  <Class Name="MonoGameLibrary.Util.KeyboardHandler">
+    <Position X="12.5" Y="5.75" Width="2" />
     <TypeIdentifier />
   </Class>
-  <Interface Name="MonoGameLibrary.Util.IInputHandler" Collapsed="true">
-    <Position X="12.25" Y="0.5" Width="1.5" />
+  <Interface Name="MonoGameLibrary.Util.IInputHandler">
+    <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Enum Name="PacManGameComponent.PacState">

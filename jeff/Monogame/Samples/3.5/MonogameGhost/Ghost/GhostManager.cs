@@ -80,7 +80,7 @@ namespace MonogameGhost.Ghost
         {
             MonogameGhost g = new MonogameGhost(Game,this, this.pac);
             g.strGhostTexture = TextureName;
-            g.Initialize();
+            g.Initialize(); //Outside of the Game loop
             g.Location = g.GetRandLocation();
             g.SetTranformAndRect(); //Ghost location changed and update wasn't called to we need to update the rectagle
 
@@ -96,7 +96,7 @@ namespace MonogameGhost.Ghost
             g.Scale = 1.0f;
             g.Enabled = true;
             g.Visible = true;
-            Ghosts.Add(g);
+            Ghosts.Add(g);  
             console.GameConsoleWrite(string.Format("Added {0} Ghost Number {1}", TextureName, this.Ghosts.Count));
         }
 

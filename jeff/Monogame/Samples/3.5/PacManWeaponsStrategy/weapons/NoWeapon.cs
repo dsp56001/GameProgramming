@@ -21,5 +21,10 @@ namespace StrategyPacMan.weapons
             this.Verb = "no verb";
             this.color = Color.White;
         }
+
+        public override string Use()
+        {
+            return string.Empty; //base.Use();
+        }
     }
 }

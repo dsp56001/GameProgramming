@@ -16,8 +16,11 @@ namespace ShotManager
         public PacManShoot(Game game) : base(game)
         {
             SM = new RateLimitedShotManager(this.Game);
-            ((RateLimitedShotManager)SM).LimitShotRate = .0001f;
-            ((RateLimitedShotManager)SM).MaxShots = 100;
+            if (SM is RateLimitedShotManager)
+            {
+                ((RateLimitedShotManager)SM).LimitShotRate = .5f;
+                ((RateLimitedShotManager)SM).MaxShots = 3;
+            }
             this.Game.Components.Add(SM);
         }
 

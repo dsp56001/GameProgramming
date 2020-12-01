@@ -91,7 +91,6 @@ namespace Collision
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
 
 
             //Check for Collision very simple test for rectangle collision
@@ -106,6 +105,10 @@ namespace Collision
                 {
                     console.GameConsoleWrite("pac pixel collision with teal ghost");
                     tealGhost.Hit();
+                }
+                else
+                {
+                    //tealGhost.Chase();
                 }
             }
             else

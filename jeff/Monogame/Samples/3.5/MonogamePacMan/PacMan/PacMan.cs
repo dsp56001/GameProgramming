@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PacMan
 {
-    public enum PacManState { Spawning, Still, Chomping, SuperPacMan }
+    public enum PacManState { Spawning, Still, Chomping, SuperPacMan, Dying, Dead }
 
     public class PacMan
     {
@@ -20,10 +17,23 @@ namespace PacMan
                 if (_state != value)
                 {
                     this.Log(string.Format("{0} was: {1} now {2}", this.ToString(), _state, value));
-
+                    //react
                     _state = value;
                 }
             }
+        }
+
+        
+        public void MovePacMan()
+        {
+            this.State = PacManState.Chomping;
+
+        }
+
+        public void KillPacMan()
+        {
+
+            this.State = PacManState.Dying;
         }
 
         public PacMan()

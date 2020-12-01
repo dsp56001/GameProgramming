@@ -13,12 +13,15 @@ namespace PacMan
 {
     public class MonogamePacMan : DrawableSprite
     {
+        //Compose components
         internal PlayerController controller { get; private set; }
         internal GameConsolePacMan PacMan
         {
             get;
-            private set;
+            set;
         }
+        
+        //Proxy
         protected PacManState pacState;
         public PacManState PacState
         {

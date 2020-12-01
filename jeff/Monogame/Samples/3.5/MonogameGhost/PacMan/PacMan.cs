@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    public enum PacManState { Spawning, Still, Chomping, SuperPacMan }
+    public enum PacManState { Spawning, Still, Chomping, SuperPacMan, Dying, Dead }
 
     public class PacMan
     {
@@ -28,10 +28,33 @@ namespace PacMan
 
         public PacMan()
         {
-
             //Set default state will call notify so make sure this.Ghosts is intitialized first
             this.State = PacManState.Still;
+        }
 
+        public void PowerUp()
+        {
+            this.State = PacManState.SuperPacMan;
+        }
+
+        public void PowerDown()
+        {
+            this.State = PacManState.Still;
+        }
+
+        public void Move()
+        {
+            this.State = PacManState.Chomping;
+        }
+
+        public void Kill()
+        {
+            this.State = PacManState.Dying;
+        }
+
+        public void Spawn()
+        {
+            this.State = PacManState.Spawning;
         }
 
         //Extra method for logging state change

@@ -11,6 +11,7 @@ namespace PacManGameComponent
 {
     public class PlayerController : Microsoft.Xna.Framework.GameComponent
     {
+        //these may not need to be public
         public Vector2 StickDir;
         public Vector2 DPadDir;
         public Vector2 KeyDir;

@@ -15,7 +15,7 @@ namespace PacManComponentFromLibrary
         SpriteBatch spriteBatch;
 
         //InputHandler input; //Delcare input service
-        PacMan pacMan;  //Delcare PacMan domponent
+        PacMan pacMan;  //Delcare PacMan component
 
         public Game1()
         {

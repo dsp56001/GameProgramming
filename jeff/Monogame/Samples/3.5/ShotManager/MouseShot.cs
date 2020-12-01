@@ -39,10 +39,12 @@ namespace ShotManager
         public override Shot Shoot()
         {
             s = base.Shoot();
+            
             s.Direction = s.Location - this.input.MouseState.Position.ToVector2();
             s.Direction = s.Direction * -1;
             s.Direction.Normalize();
             s.Speed = 300;
+            
             return s;
         }
     }
