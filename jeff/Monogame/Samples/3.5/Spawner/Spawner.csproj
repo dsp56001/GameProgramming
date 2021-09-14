@@ -38,11 +38,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Class2.cs" />
     <Compile Include="Diagram.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="GhostSpawner.cs" />
+    <Compile Include="TimedGhostSpawner.cs" />
     <Compile Include="Ghost\GameConsoleGhost.cs" />
     <Compile Include="Ghost\Ghost.cs" />
     <Compile Include="Ghost\MonogameGhost.cs" />

@@ -27,7 +27,7 @@ namespace Spawner
             //QueueTest();
 
             //ghostSpawner = new GhostSpawner(this, SpawnType.Random, ghostList);
-            ghostSpawner = new GhostSpawner(this);
+            ghostSpawner = new TimedGhostSpawner(this);
 
             this.Components.Add(ghostSpawner);
 

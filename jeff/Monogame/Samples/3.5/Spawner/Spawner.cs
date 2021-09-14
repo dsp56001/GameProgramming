@@ -11,10 +11,19 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Spawner
 {
 
-    class Spawner :  GameComponent
+
+    public interface ISpawner
+    {
+        GameComponent instance { get; set; }
+
+        GameComponent Spawn();
+    }
+
+
+    abstract class Spawner :  GameComponent, ISpawner
     {
         InputHandler input;
-        protected GameComponent instance;
+        public GameComponent instance { get; set; }
 
         public bool CreateNewObectEverySpawn;
         protected Microsoft.Xna.Framework.Input.Keys spawnKey;

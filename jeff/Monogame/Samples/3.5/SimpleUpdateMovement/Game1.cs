@@ -5,6 +5,9 @@ using System;
 
 namespace SimpleUpdateMovement
 {
+
+    public enum PacManEdgeCase { Stop, Warp }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -17,6 +20,7 @@ namespace SimpleUpdateMovement
         Vector2 PacManLoc;      //Location for pacman
         Vector2 PacManDir;      //Direction for pacman
         int PacManSpeed;        //Speed for pacman
+        PacManEdgeCase pacManEdgeCase;
         
         SpriteFont font;        //Font created as a spritefont using the mgcb pipeline tool
 
@@ -35,6 +39,8 @@ namespace SimpleUpdateMovement
             //Change the framerate of the game to 30 frames per second
             //This is used to show how time changes animation speed or better yet that is shouldn't we will test this in class
             //TargetElapsedTime = TimeSpan.FromTicks(333333);
+
+            pacManEdgeCase = PacManEdgeCase.Stop;
         }
 
         /// <summary>
@@ -113,22 +119,64 @@ namespace SimpleUpdateMovement
 
         private void UpatePacmanKeepOnScreen()
         {
-            //Turn PacMan Around if it hits the edge of the screen
-            if (PacManLoc.X > GraphicsDevice.Viewport.Width - PacMan.Width)   
+            switch(pacManEdgeCase)
             {
-                PacManDir *= new Vector2(-1, 0);
-                PacManLoc.X = 0;
+                case PacManEdgeCase.Warp:
+                    warpPacManAtEdgeofScreen();
+                    break;
+                case PacManEdgeCase.Stop:
+                    stopPacManAtEdgeofScreen();
+                    break;
             }
-            if((PacManLoc.X < 0))
+
+            
+        }
+
+        private void stopPacManAtEdgeofScreen()
+        {
+            //stop pcaman if it hits the edge of the screen
+            if (PacManLoc.X > GraphicsDevice.Viewport.Width - PacMan.Width)
             {
-                PacManDir *= new Vector2(-1, 0);
-                
+                //PacManDir *= new Vector2(-1, 0);
                 PacManLoc.X = GraphicsDevice.Viewport.Width - PacMan.Width;
             }
-            if ((PacManLoc.Y > GraphicsDevice.Viewport.Height - PacMan.Height)
-                || (PacManLoc.Y < 0))
+            if ((PacManLoc.X < 0))
             {
-                PacManDir *= new Vector2(0, -1);
+                //PacManDir *= new Vector2(-1, 0);
+
+                PacManLoc.X = 0;
+            }
+            if ((PacManLoc.Y > GraphicsDevice.Viewport.Height - PacMan.Height))
+            {
+                PacManLoc.Y = GraphicsDevice.Viewport.Height - PacMan.Height;
+            }
+            if((PacManLoc.Y < 0))
+            {
+                PacManLoc.Y = 0;
+            }
+        }
+
+        private void warpPacManAtEdgeofScreen()
+        {
+            //stop pcaman if it hits the edge of the screen
+            if (PacManLoc.X > GraphicsDevice.Viewport.Width - PacMan.Width)
+            {
+                //PacManDir *= new Vector2(-1, 0);
+                PacManLoc.X = 0;
+            }
+            if ((PacManLoc.X < 0))
+            {
+                //PacManDir *= new Vector2(-1, 0);
+
+                PacManLoc.X = GraphicsDevice.Viewport.Width - PacMan.Width;
+            }
+            if (PacManLoc.Y > GraphicsDevice.Viewport.Height - PacMan.Height)
+            {
+                PacManLoc.Y = 0;
+            }
+            if(PacManLoc.Y < 0)
+            {
+                PacManLoc.Y = GraphicsDevice.Viewport.Height - PacMan.Height;
             }
         }
 
