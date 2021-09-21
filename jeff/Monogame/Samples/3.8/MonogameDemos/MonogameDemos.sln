@@ -3,11 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonogameDemos", "MonogameDemos\MonogameDemos.csproj", "{121084BE-91FF-4FB4-A08E-2A91EAACF9D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonogameDemos", "MonogameDemos\MonogameDemos.csproj", "{121084BE-91FF-4FB4-A08E-2A91EAACF9D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMovementJump", "SimpleMovementJump\SimpleMovementJump.csproj", "{CD707C32-A8DC-418F-A233-B0B98C5B8D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMovementJump", "SimpleMovementJump\SimpleMovementJump.csproj", "{CD707C32-A8DC-418F-A233-B0B98C5B8D66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMovementWGravity", "SimpleMovementWGravity\SimpleMovementWGravity.csproj", "{C5930A6A-163D-4F9A-B961-96A43F7C9131}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMovementWGravity", "SimpleMovementWGravity\SimpleMovementWGravity.csproj", "{C5930A6A-163D-4F9A-B961-96A43F7C9131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleUpdateMovementWState", "SimpleUpdateMovementWState\SimpleUpdateMovementWState.csproj", "{F191B212-609E-4E27-81BF-FDDC134036D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMovementWRotate", "SimpleMovementWRotate\SimpleMovementWRotate.csproj", "{030A324D-E37E-41A7-A369-CCA6872D87D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpritebatchOptions", "SpritebatchOptions\SpritebatchOptions.csproj", "{8C21324F-C1C4-41F7-8E1C-5CBFEA9E6089}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Week1", "Week1", "{DBD35EDE-38F3-4C99-BD8C-328DC47F5D12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Week2", "Week2", "{F7870766-D512-474E-B5BD-D5A3BD62E1B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Week3", "Week3", "{9EEF17D4-BAD0-4DC7-BA4C-30EC49C65B7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGameLibrary", "MonoGameLibrary\MonoGameLibrary.csproj", "{2E88A834-CB37-4C90-901A-7576850D0434}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +41,32 @@ Global
 		{C5930A6A-163D-4F9A-B961-96A43F7C9131}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5930A6A-163D-4F9A-B961-96A43F7C9131}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5930A6A-163D-4F9A-B961-96A43F7C9131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F191B212-609E-4E27-81BF-FDDC134036D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F191B212-609E-4E27-81BF-FDDC134036D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F191B212-609E-4E27-81BF-FDDC134036D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F191B212-609E-4E27-81BF-FDDC134036D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{030A324D-E37E-41A7-A369-CCA6872D87D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{030A324D-E37E-41A7-A369-CCA6872D87D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{030A324D-E37E-41A7-A369-CCA6872D87D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{030A324D-E37E-41A7-A369-CCA6872D87D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C21324F-C1C4-41F7-8E1C-5CBFEA9E6089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C21324F-C1C4-41F7-8E1C-5CBFEA9E6089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C21324F-C1C4-41F7-8E1C-5CBFEA9E6089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C21324F-C1C4-41F7-8E1C-5CBFEA9E6089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E88A834-CB37-4C90-901A-7576850D0434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E88A834-CB37-4C90-901A-7576850D0434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E88A834-CB37-4C90-901A-7576850D0434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E88A834-CB37-4C90-901A-7576850D0434}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD707C32-A8DC-418F-A233-B0B98C5B8D66} = {F7870766-D512-474E-B5BD-D5A3BD62E1B4}
+		{C5930A6A-163D-4F9A-B961-96A43F7C9131} = {F7870766-D512-474E-B5BD-D5A3BD62E1B4}
+		{F191B212-609E-4E27-81BF-FDDC134036D5} = {9EEF17D4-BAD0-4DC7-BA4C-30EC49C65B7E}
+		{030A324D-E37E-41A7-A369-CCA6872D87D4} = {9EEF17D4-BAD0-4DC7-BA4C-30EC49C65B7E}
+		{8C21324F-C1C4-41F7-8E1C-5CBFEA9E6089} = {9EEF17D4-BAD0-4DC7-BA4C-30EC49C65B7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {573FB8B7-902B-4793-9F67-05D4BAE7C457}
