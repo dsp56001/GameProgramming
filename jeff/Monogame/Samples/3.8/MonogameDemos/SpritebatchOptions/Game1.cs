@@ -210,6 +210,8 @@ namespace SpritebatchOptions
                 (int)PacManLoc.Y, PacMan.Width * 4, PacMan.Height * 2);
 
 
+            
+
 
             spriteBatch.Draw(PacMan,
                 pacRect, null, Color.Blue, 0.0f, Vector2.Zero,
@@ -271,6 +273,7 @@ namespace SpritebatchOptions
             PacManLoc = location;
             for (int i = 0; i < 4; i++)
             {
+               
                 spriteBatch.Draw(PacMan,
                     PacManLoc + new Vector2(i * offset, i * offset),
                     Color.White);

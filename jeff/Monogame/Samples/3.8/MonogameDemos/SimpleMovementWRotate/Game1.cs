@@ -16,6 +16,9 @@ namespace SimpleMovementWRotate
 
         PacMan pac;
         Ghost  purpleGhost;
+        Ghost purpleGhostFaster;
+
+        Sprite deadGhost;
 
         SpriteFont font;
 
@@ -25,7 +28,10 @@ namespace SimpleMovementWRotate
             Content.RootDirectory = "Content";
 
             pac = new PacMan(this) { TextureName = "pacmanSingle" };
-            purpleGhost = new Ghost(this) { TextureName = "PurpleGhost" };
+            purpleGhost = new Ghost(this);
+            purpleGhostFaster = new Ghost(this, 200);
+
+            deadGhost = new Sprite(this) { TextureName = "deadGhost" };
 
             //graphics.PreferredBackBufferHeight = 720;
             //graphics.PreferredBackBufferWidth = 1280;
@@ -60,7 +66,10 @@ namespace SimpleMovementWRotate
 
             pac.LoadContent();
             purpleGhost.LoadContent();
+            deadGhost.LoadContent();
+            purpleGhostFaster.LoadContent();
             purpleGhost.StartMovin();
+            purpleGhostFaster.StartMovin();
 
             font = Content.Load<SpriteFont>("SpriteFont1");
         }
@@ -91,8 +100,8 @@ namespace SimpleMovementWRotate
 
             pac.Update(gameTime);
             purpleGhost.Update(gameTime);
-
-            
+            deadGhost.Update(gameTime);
+            purpleGhostFaster.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -112,8 +121,9 @@ namespace SimpleMovementWRotate
 
             pac.Draw(spriteBatch);
             purpleGhost.Draw(spriteBatch);
+            deadGhost.Draw(spriteBatch);
+            purpleGhostFaster.Draw(spriteBatch);
             
-
             spriteBatch.End();
 
 

@@ -16,35 +16,39 @@ namespace SimpleMovementWRotate
         protected Vector2 Location;      //Pacman location
         protected Vector2 Direction;      //Pacman direction
         protected float Speed;      //speed for the PacMan Sprite in pixels per frame per second
-        protected float Rotate;
+        protected float Rotate;     //degrees
 
         public string TextureName { get; set; }
 
         protected Game game;
 
+
+        //Sprite is dependant on a Game
         public Sprite(Game game)
         {
             this.game = game;
+
+            this.Speed = 100;
+
         }
 
         public virtual void LoadContent()
         {
             if (string.IsNullOrEmpty(TextureName))
-                TextureName = "pacmanSingle";
+                TextureName = "pacmanSingle";       //sneaky
             Texture = game.Content.Load<Texture2D>(TextureName);
             //Set PacMan Location to center of screen
             this.Location = new Vector2(game.GraphicsDevice.Viewport.Width / 2,
                 game.GraphicsDevice.Viewport.Height / 2);
             //Vector for pacman direction
             //notice this vector has no magnitude it's noramlized
-            this.Direction = new Vector2(1, 0);
+            this.Direction = new Vector2(0, 0);
 
             //Orgin shoud be center of texture
             this.Orgin = new Vector2(this.Texture.Width / 2, this.Texture.Height / 2);
 
 
-            //Pacman spped 
-            Speed = 100;
+            //Pacman spped Speed = 100; //units per second
         }
 
         float time;
@@ -59,7 +63,12 @@ namespace SimpleMovementWRotate
 
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+
+        /// <summary>
+        /// Draw Expects a Spritebatch that is that has begun
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public virtual void Draw(SpriteBatch spriteBatch)  //association
         {
 
             

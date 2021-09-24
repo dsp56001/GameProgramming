@@ -23,7 +23,7 @@ namespace SimpleMovementWRotate
             UpatePacmanKeepOnScreen();
 
             UpdatePacmanSpeed();
-
+            //updated direction
             UpdateKeyboardInput();
 
             //Angle in radians from vector2
