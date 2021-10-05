@@ -45,6 +45,7 @@
     <Compile Include="FPSComponent.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Ghost.cs" />
+    <Compile Include="Hud.cs" />
     <Compile Include="KeyboardHandler.cs" />
     <Compile Include="PacMan.cs" />
     <Compile Include="Program.cs" />

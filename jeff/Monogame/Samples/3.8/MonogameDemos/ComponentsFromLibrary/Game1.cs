@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary.Util;
+using MonoGameLibrary.Sprite.Extensions;
 
-namespace PacManSpriteComponent
+namespace ComponentsFromLibrary
 {
     /// <summary>
     /// This is the main type for your game.
@@ -12,29 +14,21 @@ namespace PacManSpriteComponent
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        PacMan pac1;
-        Ghost redGhost;
-
-        Hud hud;
-
-        FPSComponent fps;
+        //InputHandler input; //Delcare input service
+        PacMan pacMan;  //Delcare PacMan component
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            pac1 = new PacMan(this);        //initialize
-            redGhost = new Ghost(this);
+            //Services
+            //input = new InputHandler(this);
+//this.Components.Add(input);
 
-            hud = new Hud(this);
-            this.Components.Add(hud);
-
-            this.Components.Add(pac1);      //add them to the game as component
-            this.Components.Add(redGhost);
-
-            fps = new FPSComponent(this, false, false);
-            this.Components.Add(fps);
+            //Components
+            pacMan = new PacMan(this);
+            this.Components.Add(pacMan);
         }
 
         /// <summary>
@@ -45,7 +39,7 @@ namespace PacManSpriteComponent
         /// </summary>
         protected override void Initialize()
         {
-
+            
 
             base.Initialize();
         }
@@ -59,7 +53,7 @@ namespace PacManSpriteComponent
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            base.LoadContent();
+            
         }
 
         /// <summary>
@@ -68,7 +62,7 @@ namespace PacManSpriteComponent
         /// </summary>
         protected override void UnloadContent()
         {
-
+            
         }
 
         /// <summary>
@@ -81,6 +75,8 @@ namespace PacManSpriteComponent
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            
+
             base.Update(gameTime);
         }
 
@@ -92,6 +88,12 @@ namespace PacManSpriteComponent
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
+            //Extension method from MonoGameLibrary.Sprite.Extensions
+            //spriteBatch.DrawSprite(pacMan);
+            spriteBatch.DrawSpriteWithShadow(pacMan);
+            spriteBatch.End();
+            
 
             base.Draw(gameTime);
         }

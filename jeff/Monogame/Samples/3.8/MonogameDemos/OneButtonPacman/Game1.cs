@@ -2,18 +2,23 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGameLibrary
+namespace OneButtonPacman
 {
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        OneButtonPacMan pacMan;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            pacMan = new OneButtonPacMan(this);
+            this.Components.Add(pacMan);
         }
 
         protected override void Initialize()

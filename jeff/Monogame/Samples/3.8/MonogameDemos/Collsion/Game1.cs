@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary.Util;
 
-namespace PacManSpriteComponent
+namespace Collision
 {
     /// <summary>
     /// This is the main type for your game.
@@ -12,29 +13,38 @@ namespace PacManSpriteComponent
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        PacMan pac1;
-        Ghost redGhost;
+        //Sevices from MonogameLibrary.Util
+        InputHandler input;     //Input Handler
+        GameConsole console;    //Game Console for logging
+        ScoreService score;     //Score Service to keep track or game score
 
-        Hud hud;
-
-        FPSComponent fps;
+        //Game Components
+        PacMan pac;             //Subclasses of MonogameLibrary.DrawableSprite
+        Ghost tealGhost;        //Subclasses of MonogameLibrary.DrawableSprite
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            pac1 = new PacMan(this);        //initialize
-            redGhost = new Ghost(this);
+            //create instance of services
+            input = new InputHandler(this);
+            console = new GameConsole(this);
+            score = new ScoreService(this);
 
-            hud = new Hud(this);
-            this.Components.Add(hud);
+            //Add components to game
+            this.Components.Add(input);     
+            this.Components.Add(console);
+            this.Components.Add(score);
 
-            this.Components.Add(pac1);      //add them to the game as component
-            this.Components.Add(redGhost);
+            //Pacman and Ghost depend on the services to add them next
+            pac = new PacMan(this);
+            pac.ShowMarkers = true;     //show markers for collision
+            this.Components.Add(pac);
 
-            fps = new FPSComponent(this, false, false);
-            this.Components.Add(fps);
+            tealGhost = new Ghost(this);
+            tealGhost.ShowMarkers = true;
+            this.Components.Add(tealGhost);
         }
 
         /// <summary>
@@ -45,7 +55,7 @@ namespace PacManSpriteComponent
         /// </summary>
         protected override void Initialize()
         {
-
+            
 
             base.Initialize();
         }
@@ -59,7 +69,7 @@ namespace PacManSpriteComponent
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            base.LoadContent();
+            
         }
 
         /// <summary>
@@ -68,7 +78,7 @@ namespace PacManSpriteComponent
         /// </summary>
         protected override void UnloadContent()
         {
-
+            
         }
 
         /// <summary>
@@ -81,6 +91,31 @@ namespace PacManSpriteComponent
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
+
+            //Check for Collision very simple test for rectangle collision
+            if (pac.Intersects(tealGhost))
+            {
+                //hit
+                console.GameConsoleWrite("pac intersects teal ghost");
+                
+                //Maybe try per pixel collision here 
+                //It's a good idea to do rectagle collision first no need to look at pixels if rectangle don't intersect
+                if(pac.PerPixelCollision(tealGhost))
+                {
+                    console.GameConsoleWrite("pac pixel collision with teal ghost");
+                    tealGhost.Hit();
+                }
+                else
+                {
+                    //tealGhost.Chase();
+                }
+            }
+            else
+            {
+                tealGhost.Chase();
+            }
+
             base.Update(gameTime);
         }
 
@@ -92,6 +127,7 @@ namespace PacManSpriteComponent
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            
 
             base.Draw(gameTime);
         }

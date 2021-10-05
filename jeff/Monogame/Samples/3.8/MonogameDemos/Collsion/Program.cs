@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoGameLibrary
+namespace Collision
 {
     public static class Program
     {

@@ -20,6 +20,11 @@ namespace PacManSpriteComponent
             keyboard = new KeyboardHandler();
         }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
         protected override void LoadContent()
         {
             base.LoadContent();
