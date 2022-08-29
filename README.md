@@ -1,12 +1,10 @@
-# GameProgramming
-Code for Game Programming Course
+# GameProgramming 1
+Code for Game Programming Course PROG 301
 
 Monogame samples are in the Monogame folder
   
-  Monogame samples are built with Monogame 3.7 http://www.monogame.net/
+  Monogame samples are built with Monogame 3.8 http://www.monogame.net/
   
 Unity Samples are in the unity folder
   
-  unity samples are built with unity 2019.1 http://unity3d.com/unity/download/archive
-
-Course LMS is @ https://canvas.colum.edu/courses/12247
+  unity samples are built with unity 2021.3 http://unity3d.com/unity/download/archive
