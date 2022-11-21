@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonogameDemos", "MonogameDemos\MonogameDemos.csproj", "{121084BE-91FF-4FB4-A08E-2A91EAACF9D8}"
 EndProject
@@ -37,9 +37,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneButtonPacman", "OneButto
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Week6", "Week6", "{4B71130A-9051-4D9B-9B3F-16AB87E4EFB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacManGameComponent", "PacManGameComponent\PacManGameComponent.csproj", "{B88D81CD-A1A5-4021-AEED-2196E1682A39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacManGameComponent", "PacManGameComponent\PacManGameComponent.csproj", "{B88D81CD-A1A5-4021-AEED-2196E1682A39}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolePacState", "ConsolePacState\ConsolePacState.csproj", "{A76242F6-AFB4-4D8F-9148-9ECD8CF9E9AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "other", "other", "{EB143D75-A5CF-441B-BE91-B9D8CEEFAC3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camera", "Camera\Camera.csproj", "{2B072184-4C58-4070-B6DE-9CEAFF413C38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +155,14 @@ Global
 		{A76242F6-AFB4-4D8F-9148-9ECD8CF9E9AE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A76242F6-AFB4-4D8F-9148-9ECD8CF9E9AE}.Release|x86.ActiveCfg = Release|Any CPU
 		{A76242F6-AFB4-4D8F-9148-9ECD8CF9E9AE}.Release|x86.Build.0 = Release|Any CPU
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38}.Debug|x86.Build.0 = Debug|Any CPU
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38}.Release|x86.ActiveCfg = Release|Any CPU
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -167,6 +179,7 @@ Global
 		{CC228798-5C1E-4324-8F1F-70CEA8CB852F} = {1745B582-4F3C-4A02-8748-297645DB9026}
 		{B88D81CD-A1A5-4021-AEED-2196E1682A39} = {4B71130A-9051-4D9B-9B3F-16AB87E4EFB0}
 		{A76242F6-AFB4-4D8F-9148-9ECD8CF9E9AE} = {4B71130A-9051-4D9B-9B3F-16AB87E4EFB0}
+		{2B072184-4C58-4070-B6DE-9CEAFF413C38} = {EB143D75-A5CF-441B-BE91-B9D8CEEFAC3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {573FB8B7-902B-4793-9F67-05D4BAE7C457}
