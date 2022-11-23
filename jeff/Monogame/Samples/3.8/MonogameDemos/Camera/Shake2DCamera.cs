@@ -20,7 +20,7 @@ namespace Camera
         public Shake2DCamera(Viewport viewport) : base(viewport)
         {
             shakeSize = 10;
-            shakesPerSecond = 30;
+            shakesPerSecond = 10;
             shakeOffset = new Vector2(shakeSize, 0);
         }
         protected override void UpdateCameraMove(GameTime gameTime)

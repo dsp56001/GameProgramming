@@ -17,9 +17,9 @@ namespace PacMan
             get { return _state; }
             set
             {
-                if (_state != value)
+                if (_state != value) //state has changed
                 {
-                    this.Log(string.Format("{0} was: {1} now {2}", this.ToString(), _state, value));
+                    this.Log(string.Format("{0} was: {1} now {2}", this, _state, value));
 
                     _state = value;
                 }

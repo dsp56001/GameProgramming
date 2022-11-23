@@ -33,7 +33,7 @@ namespace PacManSpriteComponent
             this.Components.Add(pac1);      //add them to the game as component
             this.Components.Add(redGhost);
 
-            fps = new FPSComponent(this, false, false);
+            fps = new FPSComponent(this);
             this.Components.Add(fps);
         }
 

@@ -10,71 +10,87 @@ using MonoGameLibrary;
 using MonoGameLibrary.Sprite;
 using MonoGameLibrary.Util;
 
-namespace ComponentsFromLibrary
+namespace ShotManager
 {
-    //Set back to sprite to test with extension methods
-    class PacMan : Sprite
+
+    public enum PacState
+    {
+        Spawning, Stopped, Chomping, Dying, Dead, PoweredUp
+    }
+
+    class PacMan : DrawableSprite
     {
         int playerIndex; //player index for controller
 
-
-        //Dependancy
         //Services
-        InputHandler input;  //denendacy
+        protected InputHandler input;
         GameConsole console;
+        ScoreService score;
 
-        //Dependancy
+        protected Vector2 lastDirection; //Direction for shooting
+
+        //State
+        protected PacState pacstate;
+        public PacState Pacstate
+        {
+            get { return pacstate; }
+            protected set { this.pacstate = value; }
+        }
+        
         public PacMan(Game game)
             : base(game)
         {
-            // TODO: Construct any child components her
+            
             playerIndex = 0;
 
-            input = (InputHandler)game.Services.GetService<IInputHandler>();
+            //PacMan Depends on some game sevices
+        #region Dependancy Services
+            input = (InputHandler)game.Services.GetService(typeof(IInputHandler));
 
             //Make sure input service exists
             if (input == null)
             {
-                input = new InputHandler(this.Game);
-                this.Game.Components.Add(input);
-                
-                //throw new Exception("PacMan Depends on Input service please add input service before you add PacMan.");
+                throw new Exception("PacMan Depends on Input service please add input service before you add PacMan.");
             }
 
-            console = (GameConsole)game.Services.GetService<IGameConsole>();
-            if(console == null) //first
+            console = (GameConsole)game.Services.GetService(typeof(IGameConsole));
+            //Make sure input service exists
+            if (console == null)
             {
-                console = new GameConsole(game);
-                game.Components.Add(console);
+                throw new Exception("PacMan Depends on Console service please add Console service before you add PacMan.");
             }
 
-           
+            score = (ScoreService)game.Services.GetService(typeof(IScoreService));
+            //Make sure input service exists
+            if (console == null)
+            {
+                throw new Exception("PacMan Depends on Score service please add Score service before you add PacMan.");
+            }
+        #endregion
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            UpdatePacMan(lastUpdateTime, gameTime);
-            
+            switch ( this.Pacstate)
+            {
+                case PacState.Chomping:
+                case PacState.Stopped:
+                    UpdatePacMan(lastUpdateTime, gameTime);
+                    break;
+            }
         }
 
         protected override void LoadContent()
         {
             this.spriteTexture = this.Game.Content.Load<Texture2D>("pacManSingle");
-
-            console.GameConsoleWrite("PacMan: Loaded Texture");
-
+            
             this.Location = new Vector2(300, 300);
             this.Speed = 100;
-
-            console.GameConsoleWrite("PacMan: set location" + this.Location);
-            console.GameConsoleWrite("PacMan: set speed" + this.Speed);
-
-            base.LoadContent(); //in the middle
-
+            base.LoadContent();
             this.Origin = new Vector2(this.spriteTexture.Width / 2, this.spriteTexture.Height / 2);
             this.Scale = 1;
-            this.ShowMarkers = true;
+            this.Pacstate = PacState.Stopped;
         }
         
         private void UpdatePacMan(float lastUpdateTime, GameTime gameTime)
@@ -199,13 +215,13 @@ namespace ComponentsFromLibrary
             }
             #endregion
 #endif
+            if(PacManKeyDir.Length() > 0)
+            {
+                this.lastDirection = PacManKeyDir;
+                console.Log("PacMan.lastDirection", this.lastDirection.ToString());
+            }
             
-
-            
-                console.DebugTextOutput["PacManLocation"] =  this.Location.ToString();
-                console.DebugTextOutput["PacManSpeed"] = this.Speed.ToString();
-
-
+            console.DebugText = this.Location.ToString();
 
         }
 

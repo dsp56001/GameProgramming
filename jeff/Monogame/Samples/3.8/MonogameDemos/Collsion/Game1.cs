@@ -108,7 +108,7 @@ namespace Collision
                 }
                 else
                 {
-                    //tealGhost.Chase();
+                    tealGhost.Chase();
                 }
             }
             else

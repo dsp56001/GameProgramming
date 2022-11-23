@@ -3,43 +3,39 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Util;
 
-namespace MonogameGhost
+namespace ShotManager
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        InputHandler input;
+        FPS fps;
         GameConsole console;
+        MouseShot mouseShot;
+        MousePaint mousePaint;
 
-        PacMan.MonogamePacMan pac;
-        //Ghost.MonogameGhost redGhost;
-        Ghost.GhostManager ghostManager;
+        PacManShoot pac;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            input = new InputHandler(this);
             console = new GameConsole(this);
-
-            this.Components.Add(input);
             this.Components.Add(console);
 
-            pac = new PacMan.MonogamePacMan(this);
+            fps = new FPS(this);
+            this.Components.Add(fps);
+
+            mouseShot = new MouseShot(this);
+            this.Components.Add(mouseShot);
+
+            //mousePaint = new MousePaint(this) { ShotTexture = "RedGhost" } ;
+            //this.Components.Add(mousePaint);
+
+            pac = new PacManShoot(this);
             this.Components.Add(pac);
-
-            
-
-            ghostManager = new Ghost.GhostManager(this, pac);
-            this.Components.Add(ghostManager);
-            
-            
         }
 
         /// <summary>
@@ -50,7 +46,7 @@ namespace MonogameGhost
         /// </summary>
         protected override void Initialize()
         {
-            
+
 
             base.Initialize();
         }
@@ -64,7 +60,7 @@ namespace MonogameGhost
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
+
         }
 
         /// <summary>
@@ -73,7 +69,7 @@ namespace MonogameGhost
         /// </summary>
         protected override void UnloadContent()
         {
-            
+
         }
 
         /// <summary>
@@ -86,8 +82,10 @@ namespace MonogameGhost
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
 
+            console.Log("mouseShotCount", mouseShot.Shots.Count.ToString());
+            //console.Log("mousePaintCount", mousePaint.Shots.Count.ToString());
+            console.Log("pacSMCount", pac.SM.Shots.Count.ToString());
             base.Update(gameTime);
         }
 
@@ -99,7 +97,10 @@ namespace MonogameGhost
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            
+            spriteBatch.Begin();
+            mouseShot.Draw(spriteBatch);
+            //mousePaint.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

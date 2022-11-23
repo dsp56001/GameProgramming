@@ -49,13 +49,13 @@ namespace Camera
             if (currentMouseWheelValue > previousMouseWheelValue)
             {
                 AdjustZoom(.05f);
-                Console.WriteLine(moveSpeed);
+                //Console.WriteLine(moveSpeed);
             }
 
             if (currentMouseWheelValue < previousMouseWheelValue)
             {
                 AdjustZoom(-.05f);
-                Console.WriteLine(moveSpeed);
+                //Console.WriteLine(moveSpeed);
             }
         }
     }

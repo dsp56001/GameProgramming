@@ -25,7 +25,7 @@ namespace PacManSpriteComponent
                    game.TargetElapsedTime)
         { }
 
-        public FPSComponent(Game game) : this(game, false, true) { }
+        public FPSComponent(Game game) : this(game, false, false) { }
 
         public FPSComponent(Game game, bool synchWithVerticalRetrace,
                    bool isFixedTimeStep, TimeSpan targetElapsedTime)

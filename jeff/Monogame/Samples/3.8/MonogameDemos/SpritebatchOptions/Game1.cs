@@ -226,7 +226,7 @@ namespace SpritebatchOptions
                 pacRect,
                 new Rectangle(0, 0, 40, 40),
                 Color.PowderBlue, 0.0f, Vector2.Zero,
-                SpriteEffects.None, (float)i / 4);
+                SpriteEffects.FlipHorizontally, (float)i / 4);
             spriteBatch.End();
 
             //Sprite Effects Flip
@@ -246,7 +246,7 @@ namespace SpritebatchOptions
                 (int)PacManLoc.Y, PacMan.Width, PacMan.Height);
 
             spriteBatch.Draw(PacMan,
-                pacRect, null, Color.SaddleBrown, MathHelper.ToRadians(62.0f), Vector2.Zero,
+                pacRect, null, Color.SaddleBrown, MathHelper.ToRadians(45.0f), Vector2.Zero,
                 SpriteEffects.None, (float)i / 4);
 
             //Rotate Center Orgin

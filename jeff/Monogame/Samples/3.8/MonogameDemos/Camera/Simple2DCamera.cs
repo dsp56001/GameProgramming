@@ -27,6 +27,7 @@ namespace Camera
             Bounds = viewport.Bounds;
             Zoom = 1f;
             Position = new Vector2(viewport.Width/2, viewport.Height/2); //Vector2.Zero; //Vector2.Zero will be center of screen
+            //Position = Vector2.Zero;
         }
 
 
@@ -113,7 +114,7 @@ namespace Camera
             zoom = Zoom;
             if (previousZoom != zoom)
             {
-                Console.WriteLine(zoom);
+                //Console.WriteLine(zoom);
 
             }
 
@@ -122,7 +123,7 @@ namespace Camera
 
         protected virtual void UpdateCameraMove(GameTime gameTime)
         {
-            
+            //nothing
         }
     }
 

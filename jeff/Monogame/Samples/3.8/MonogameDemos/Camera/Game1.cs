@@ -56,6 +56,11 @@ namespace Camera
             // TODO: Add your drawing code here
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.Transform);
             _spriteBatch.Draw(pac, new Vector2(100, 100), Color.White);
+            _spriteBatch.Draw(pac, new Vector2(200, 200), Color.White);
+            _spriteBatch.End();
+
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(pac, new Vector2(300, 300), Color.White);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
