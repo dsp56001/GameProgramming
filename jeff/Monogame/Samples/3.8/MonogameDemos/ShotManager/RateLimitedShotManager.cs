@@ -9,7 +9,9 @@ namespace ShotManager
 {
     class RateLimitedShotManager : ShotManager
     {
-        protected float limitShotRateForMiliseconds, limitShotRateMilisecondsTimer, limitShotRate;
+        protected float limitShotRateForMiliseconds, 
+            limitShotRateMilisecondsTimer, 
+            limitShotRate;
         public float LimitShotRate
         {
             get { return limitShotRate; }

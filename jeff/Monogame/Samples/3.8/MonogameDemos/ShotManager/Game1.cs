@@ -31,8 +31,8 @@ namespace ShotManager
             mouseShot = new MouseShot(this);
             this.Components.Add(mouseShot);
 
-            //mousePaint = new MousePaint(this) { ShotTexture = "RedGhost" } ;
-            //this.Components.Add(mousePaint);
+            mousePaint = new MousePaint(this) { ShotTexture = "RedGhost" } ;
+            this.Components.Add(mousePaint);
 
             pac = new PacManShoot(this);
             this.Components.Add(pac);

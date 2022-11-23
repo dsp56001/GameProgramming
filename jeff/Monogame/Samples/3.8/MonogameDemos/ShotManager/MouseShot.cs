@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShotManager
 {
-    class MouseShot : RateLimitedShotManager
+    class MouseShot : ShotManager
     {
         InputHandler input;
         
@@ -24,7 +24,7 @@ namespace ShotManager
                 input.Initialize();
                 this.Game.Components.Add(input);
             }
-            this.LimitShotRate = .01f;
+            //this.LimitShotRate = .01f;
         }
 
         public override void Update(GameTime gameTime)

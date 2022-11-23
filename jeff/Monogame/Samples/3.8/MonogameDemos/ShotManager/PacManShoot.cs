@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using ShotManager.Weapons;
 
 namespace ShotManager
 {
@@ -15,12 +16,12 @@ namespace ShotManager
 
         public PacManShoot(Game game) : base(game)
         {
-            SM = new RateLimitedShotManager(this.Game);
-            if (SM is RateLimitedShotManager)
-            {
-                ((RateLimitedShotManager)SM).LimitShotRate = .5f;
-                ((RateLimitedShotManager)SM).MaxShots = 3;
-            }
+            SM = new ChainGun(this.Game);
+            //if (SM is RateLimitedShotManager)
+            //{
+            //    ((RateLimitedShotManager)SM).LimitShotRate = .5f;
+            //    ((RateLimitedShotManager)SM).MaxShots = 3;
+            //}
             this.Game.Components.Add(SM);
         }
 
