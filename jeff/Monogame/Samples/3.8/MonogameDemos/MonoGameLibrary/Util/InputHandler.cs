@@ -69,7 +69,8 @@ namespace MonoGameLibrary.Util
             this.allowsExiting = allowsExiting;
 
             //Add IInputHandler as Game Service the constructor of this class added the class as a service
-            game.Services.AddService(typeof(IInputHandler), this);
+            //game.Services.AddService(typeof(IInputHandler), this);
+            game.Services.AddService<IInputHandler>(this); //New syntax
             
             //initialize our local member fields
             keyboard = new KeyboardHandler();
@@ -99,12 +100,12 @@ namespace MonoGameLibrary.Util
             {
                 if (keyboard.IsKeyDown(Keys.Escape))
                     //Monogame does't allow this anymore
-                    //Game.Exit();
+                    Game.Exit();
 
                 // Allows the default game to exit on Xbox 360 and Windows
                 if (gamePadHandler.WasButtonPressed(0, ButtonType.Back)) { }
                     //Monogame doesn't allow this anymore
-                    //Game.Exit();
+                    Game.Exit();
                     
             }
 

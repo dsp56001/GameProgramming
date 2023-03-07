@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Util;
 
-namespace Collision
+namespace MonogamePacMan
 {
     /// <summary>
     /// This is the main type for your game.
@@ -13,45 +13,31 @@ namespace Collision
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //Sevices from MonogameLibrary.Util
-        InputHandler input;     //Input Handler
-        GameConsole console;    //Game Console for logging
-        ScoreService score;     //Score Service to keep track or game score
+        InputHandler input;
+        GameConsole console;
 
-        //Game Components
-        PacMan pac;             //Subclasses of MonogameLibrary.DrawableSprite
-        Ghost tealGhost;        //Subclasses of MonogameLibrary.DrawableSprite
-        Ghost redGhost;        //Subclasses of MonogameLibrary.DrawableSprite
+        PacMan.MonogamePacMan pacMan;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            //create instance of services
             input = new InputHandler(this);
             console = new GameConsole(this);
-            score = new ScoreService(this);
 
-            //Add components to game
-            this.Components.Add(input);     
+            this.Components.Add(input);
             this.Components.Add(console);
-            this.Components.Add(score);
 
-            //Pacman and Ghost depend on the services to add them next
-            pac = new PacMan(this);
-            pac.ShowMarkers = true;     //show markers for collision
-            this.Components.Add(pac);
+            pacMan = new PacMan.MonogamePacMan(this);
+            this.Components.Add(pacMan);
 
-            tealGhost = new Ghost(this, pac);
-            tealGhost.ShowMarkers = true;
-            this.Components.Add(tealGhost);
+#if DEBUG
+            FPS fps;
+            fps = new FPS(this);
+            this.Components.Add(fps);
+#endif
 
-            redGhost = new Ghost(this, pac);
-
-            redGhost.SpriteTexture = "PurpleGhost";
-            redGhost.ShowMarkers = true;
-            this.Components.Add(redGhost);
         }
 
         /// <summary>
@@ -76,7 +62,9 @@ namespace Collision
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            redGhost.Location = new Vector2(100, 100);
+            //Preload content
+            Content.Load<Texture2D>("pacManSingle");
+
         }
 
         /// <summary>
@@ -98,9 +86,8 @@ namespace Collision
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
-
-            
+            console.Log("PacMan State", pacMan.PacState.ToString());
+            console.Log("PacMan Loc", pacMan.Location.ToString());
 
             base.Update(gameTime);
         }

@@ -18,7 +18,7 @@ namespace ComponentsFromLibrary
         int playerIndex; //player index for controller
 
 
-        //Dependancy
+        //Dependency
         //Services
         InputHandler input;  //denendacy
         GameConsole console;
@@ -204,6 +204,7 @@ namespace ComponentsFromLibrary
             
                 console.DebugTextOutput["PacManLocation"] =  this.Location.ToString();
                 console.DebugTextOutput["PacManSpeed"] = this.Speed.ToString();
+                console.DebugTextOutput["PacManColor"] = this.DrawColor.ToString();
 
 
 

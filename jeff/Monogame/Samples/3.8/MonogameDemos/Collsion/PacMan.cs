@@ -88,7 +88,7 @@ namespace Collision
             
             this.Location = new Vector2(300, 300);
             this.Speed = 100;
-            base.LoadContent();
+            base.LoadContent(); //set to zero
             this.Origin = new Vector2(this.spriteTexture.Width / 2, this.spriteTexture.Height / 2);
             this.Scale = 1;
             this.Pacstate = PacState.Stopped;
@@ -218,6 +218,10 @@ namespace Collision
 #endif
 
             console.DebugText = this.Location.ToString();
+            console.DebugText += "what ever!!!";
+            console.DebugText += "\nwhat ever!!!";
+
+            console.DebugTextOutput["PacLocation"] = this.Location.ToString(); ;
 
         }
 

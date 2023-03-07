@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\GhostHit.png" />
     <Content Include="Content\pacmanSingle.png" />
     <Content Include="Content\RedGhost.png" />
     <Content Include="Icon.ico" />

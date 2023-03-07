@@ -24,7 +24,8 @@ namespace ComponentsFromLibrary
 
             //Services
             //input = new InputHandler(this);
-//this.Components.Add(input);
+            //this.Components.Add(input);
+            this.Components.Add(new GameConsole(this));
 
             //Components
             pacMan = new PacMan(this);

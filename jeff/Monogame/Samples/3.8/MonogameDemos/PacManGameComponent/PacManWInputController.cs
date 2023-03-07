@@ -14,6 +14,7 @@ namespace PacManGameComponent
 
 
         //this class depends on PlayerController
+        //Has A
         protected PlayerController controller;
 
         public PacManWInputController(Game game)
@@ -76,7 +77,7 @@ namespace PacManGameComponent
             this.Direction = this.controller.Direction;
             
             //Time corrected move. MOves PacMan By PacManDiv every Second
-            Location += ((this.controller.Direction * (lastUpdateTime / 1000)) * Speed);      //Simple Move PacMan by PacManDir
+            Location += ((this.Direction * (lastUpdateTime / 1000)) * Speed);      //Simple Move PacMan by PacManDir
 
             //Pac man is moving form input
             if(this.controller.Direction.Length() > 0)

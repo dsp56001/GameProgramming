@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary.Sprite;
+using MonoGameLibrary.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,14 @@ namespace PacManGameComponent
         Texture2D ghostTexture, ghostHitTexture;
         PacMan pacMan;
 
+        GameConsole console;
+
         public Ghost(Game game, PacMan pac) : base(game)
         {
-            _state = GhostState.Roving;
+            _state = GhostState.Evading;
             this.pacMan = pac;
+
+            console = (GameConsole)this.Game.Services.GetService<IGameConsole>();
         }
 
         public void Evade()
@@ -53,8 +58,15 @@ namespace PacManGameComponent
 
             Location += ((this.Direction * (lastUpdateTime / 1000)) * Speed);      //Simple Move
 
+            UpdateLogStateToConsole();
 
             base.Update(gameTime);
+        }
+
+        private void UpdateLogStateToConsole()
+        {
+            console.DebugTextOutput["GhostState"] = this._state.ToString();
+            console.DebugTextOutput["GhostSpeed"] = this.Speed.ToString() ;
         }
 
         protected virtual void UpdateDirection()

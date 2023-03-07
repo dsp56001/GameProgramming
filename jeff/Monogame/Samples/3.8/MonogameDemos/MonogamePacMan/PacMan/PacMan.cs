@@ -1,16 +1,14 @@
 ﻿using System;
 
+
 namespace PacMan
 {
-    public enum PacManState { Spawning, Still, Chomping, SuperPacMan }
+    public enum PacManState { Spawning, Still, Chomping, SuperPacMan, Dying, Dead }
 
-    
-    //POCO Plain old CLR Object
-    //POJO Plain old Java Object
     public class PacMan
     {
 
-        protected PacManState _state;  //Private instance Data Memeber
+        protected PacManState _state;
         public PacManState State
         {
             get { return _state; }
@@ -19,10 +17,23 @@ namespace PacMan
                 if (_state != value)
                 {
                     this.Log(string.Format("{0} was: {1} now {2}", this.ToString(), _state, value));
-
+                    //react
                     _state = value;
                 }
             }
+        }
+
+        
+        public void MovePacMan()
+        {
+            this.State = PacManState.Chomping;
+
+        }
+
+        public void KillPacMan()
+        {
+
+            this.State = PacManState.Dying;
         }
 
         public PacMan()
@@ -38,11 +49,6 @@ namespace PacMan
         {
             //nothing
             Console.WriteLine(s);
-        }
-
-        public virtual void PowerUP()
-        {
-            this.State = PacManState.SuperPacMan;
         }
     }
 }
