@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SimpleMovementWGravity
 {
@@ -12,22 +14,27 @@ namespace SimpleMovementWGravity
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D PacMan;
-        Vector2 PacManLoc;      //Pacman location
-        Vector2 PacManDir;      //Pacman direction
-        float PacManSpeed; //speed for the PacMan Sprite in pixels per frame per second
+        //Texture2D PacMan;
+        //Vector2 PacManLoc;      //Pacman location
+        //Vector2 PacManDir;      //Pacman direction
+        //float PacManSpeed; //speed for the PacMan Sprite in pixels per frame per second
 
-        //Gravity
-        //float PacManSpeedMax;           //Max speed for the pac man sprite
-        Vector2 GravityDir;             //Gravity Direction normalized victor
-        float GravityAccel;             //Gavity Acceloration
+        ////Gravity
+        ////float PacManSpeedMax;           //Max speed for the pac man sprite
+        //Vector2 GravityDir;             //Gravity Direction normalized victor
+        //float GravityAccel;             //Gavity Acceloration
+
+        List<Pacman> pacmanPlayers;
+        public int PLAYER_COUNT { get; private set; }
 
         SpriteFont font;
 
-        public Game1()
+        public Game1(int playerCount)
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            PLAYER_COUNT = playerCount;
 
             //graphics.PreferredBackBufferHeight = 720;
             //graphics.PreferredBackBufferWidth = 1280;
@@ -60,20 +67,29 @@ namespace SimpleMovementWGravity
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            PacMan = Content.Load<Texture2D>("pacManSingle");
+            //PacMan = Content.Load<Texture2D>("pacManSingle");
             //Set PacMan Location to center of screen
-            PacManLoc = new Vector2(GraphicsDevice.Viewport.Width / 2,
-                GraphicsDevice.Viewport.Height / 2);
-            //Vector for pacman direction
-            //notice this vector has no magnitude it's noramlized
-            PacManDir = new Vector2(1, 0);
+            //PacManLoc = new Vector2(GraphicsDevice.Viewport.Width / 2,
+            //    GraphicsDevice.Viewport.Height / 2);
+            ////Vector for pacman direction
+            ////notice this vector has no magnitude it's noramlized
+            //PacManDir = new Vector2(1, 0);
 
-            //Pacman spped 
-            PacManSpeed = 10;
-            //PacManSpeedMax = 20;
+            ////Pacman spped 
+            //PacManSpeed = 10;
+            ////PacManSpeedMax = 20;
 
-            GravityDir = new Vector2(1, 0);
-            GravityAccel = 1.8f;
+            //GravityDir = new Vector2(1, 0);
+            //GravityAccel = 1.8f;
+
+            //pacmanPlayers = Enumerable.Repeat(new Pacman(this, new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2), 
+            //    new Vector2(1, 0), 10, new Vector2(1, 0), 1.8f), PLAYER_COUNT).ToList();
+
+            pacmanPlayers = new List<Pacman>()
+            {
+                new Pacman(this, new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2), new Vector2(0, 1), 10, new Vector2(0, 1), 1.8f),
+                new Pacman(this, new Vector2(GraphicsDevice.Viewport.Width / 4, GraphicsDevice.Viewport.Height / 4), new Vector2(0, 1), 10, new Vector2(0, 1), 1.8f)
+            };
 
             font = Content.Load<SpriteFont>("Arial");
         }
@@ -97,6 +113,7 @@ namespace SimpleMovementWGravity
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            //KeyboardState state = Keyboard.GetState();
 
             //Elapsed time since last update will be used to correct movement speed
             float time = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -105,102 +122,16 @@ namespace SimpleMovementWGravity
             //Simple move Moves PacMac by PacManDiv on every update
             //PacManLoc = PacManLoc + PacManDir * PacManSpeed;
 
-            //Gavity before move
-            UpdateGravity();
-
-            //Time corrected move. MOves PacMan By PacManDiv every Second
-            PacManLoc = PacManLoc + ((PacManDir * PacManSpeed) * (time / 1000));      //Simple Move PacMan by PacManDir
-
-            UpatePacmanKeepOnScreen();
-
-            //Don't stop if no keys
-            //UpdatePacmanSpeed();
-
-            UpdateKeyboardInput();
-
+            for(int i = 0; i < pacmanPlayers.Count; i++)
+            {
+                pacmanPlayers[i].GravityMove(gameTime);
+                pacmanPlayers[i].UpatePacmanKeepOnScreen();
+                //Don't stop if no keys
+                //pacmanPlayers[i].UpdatePacmanSpeed();
+                pacmanPlayers[i].UpdateKeyboardInput();
+            }
 
             base.Update(gameTime);
-        }
-
-        private void UpdateGravity()
-        {
-            //Gravity
-            PacManDir = PacManDir + (GravityDir * GravityAccel) ;
-        }
-
-        private void UpatePacmanKeepOnScreen()
-        {
-            //Keep PacMan On Screen
-            //Turns around and stays at edges
-            //X right
-            if (PacManLoc.X >
-                    GraphicsDevice.Viewport.Width - PacMan.Width)
-            {
-                //Negate X
-                PacManDir = PacManDir * new Vector2(-1, 1);
-                PacManLoc.X = GraphicsDevice.Viewport.Width - PacMan.Width;
-            }
-
-            //X left
-            if (PacManLoc.X < 0)
-            {
-                //Negate X
-                PacManDir = PacManDir * new Vector2(-1, 1);
-                PacManLoc.X = 0;
-            }
-
-            //Y top
-            if (PacManLoc.Y >
-                    GraphicsDevice.Viewport.Height - PacMan.Height)
-            {
-                //Negate Y
-                PacManDir = PacManDir * new Vector2(1, -1);
-                PacManLoc.Y = GraphicsDevice.Viewport.Height - PacMan.Height;
-            }
-
-            //Y bottom
-            if (PacManLoc.Y < 0)
-            {
-                //Negate Y
-                PacManDir = PacManDir * new Vector2(1, -1);
-                PacManLoc.Y = 0;
-            }
-        }
-
-        private void UpdatePacmanSpeed()
-        {
-            //Speed for next frame
-            if (Keyboard.GetState().GetPressedKeys().Length > 0) //If there is any key press the legth of the Array of keys returned by GetPressedKeys wil be greater that 0
-            {
-                PacManSpeed = 200;  //Key down pacman has speed
-            }
-            else
-            {
-                PacManSpeed = 0;    //No key down stop
-            }
-
-        }
-
-        private void UpdateKeyboardInput()
-        {
-            #region Keyboard Movement
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                GravityDir = new Vector2(0, 1);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                GravityDir = new Vector2(0, -1);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                GravityDir = new Vector2(1, 0);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                GravityDir = new Vector2(-1, 0);
-            }
-            #endregion
         }
 
         /// <summary>
@@ -212,14 +143,17 @@ namespace SimpleMovementWGravity
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(PacMan, PacManLoc, Color.White);
-            spriteBatch.DrawString(font,
-                string.Format("Speed:{0}\nDir:{1}\nGravityDir:{2}\nGravtyAccel:{3}",
-                PacManSpeed, PacManDir, GravityDir, GravityAccel),
-                new Vector2(10, 10),
-                Color.White);
+            for (int i = 0; i < pacmanPlayers.Count; i++)
+            {
+                spriteBatch.Draw(pacmanPlayers[i].PacManTxt, pacmanPlayers[i].PacManLoc, Color.White);
+                spriteBatch.DrawString(font,
+                    string.Format("Speed:{0}\nDir:{1}\nGravityDir:{2}\nGravtyAccel:{3}",
+                    pacmanPlayers[i].PacManSpeed, pacmanPlayers[i].PacManDir, pacmanPlayers[i].GravityDir, pacmanPlayers[i].GravityAccel),
+                    new Vector2(10, 10 * (i * 9.5f)),
+                    Color.White);
+                
+            }
             spriteBatch.End();
-
 
             base.Draw(gameTime);
         }

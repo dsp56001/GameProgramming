@@ -9,6 +9,10 @@ namespace PacMan
     //POJO Plain old Java Object
     public class PacMan
     {
+        Texture2D PacMan { get; set; }
+        Vector2 PacManLoc;      //Pacman location
+        Vector2 PacManDir;      //Pacman direction
+        float PacManSpeed; //speed for the PacMan Sprite in pixels per frame per second
 
         protected PacManState _state;  //Private instance Data Memeber
         public PacManState State
