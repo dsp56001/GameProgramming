@@ -11,11 +11,12 @@ namespace SimpleMovementWRotate
 {
     class PacMan : Sprite
     {
-       public PacMan(Game game) : base(game)
-       {
+        public float RotationVelocity = 3f;
+        
+        public PacMan(Game game) : base(game)
+        {
 
-       }
-
+        }
 
         float RotationAngleKey;
         public override void Update(GameTime gameTime)
@@ -26,13 +27,15 @@ namespace SimpleMovementWRotate
             //updated direction
             UpdateKeyboardInput();
 
-            //Angle in radians from vector2
-            RotationAngleKey = (float)System.Math.Atan2(
-                    this.Direction.X,
-                    this.Direction.Y * -1); //y axis is flipped already
-            //Find angle in degrees
-            this.Rotate = (float)MathHelper.ToDegrees(
-                RotationAngleKey - (float)(Math.PI / 2)); //image is rotated facing right already hence the -1/2 PI
+            Direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90) - Rotate), -(float)Math.Sin(MathHelper.ToRadians(90) - Rotate));
+
+            ////Angle in radians from vector2
+            //RotationAngleKey = (float)System.Math.Atan2(
+            //        this.Direction.X,
+            //        this.Direction.Y * -1); //y axis is flipped already
+            ////Find angle in degrees
+            //this.Rotate = (float)MathHelper.ToDegrees(
+            //    RotationAngleKey - (float)(Math.PI / 2)); //image is rotated facing right already hence the -1/2 PI
 
 
             base.Update(gameTime); //Move code from Parent
@@ -72,20 +75,24 @@ namespace SimpleMovementWRotate
             #region Keyboard Movement
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
             {
-                this.Direction += new Vector2(0, 1);
+                //this.Direction += new Vector2(0, 1);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
-                this.Direction += new Vector2(0, -1);
+                //this.Direction += new Vector2(0, -1);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                this.Direction += new Vector2(1, 0);
+                //this.Direction += new Vector2(1, 0);
+                this.Rotate += MathHelper.ToRadians(RotationVelocity);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                this.Direction += new Vector2(-1, 0);
+                //this.Direction += new Vector2(-1, 0);
+                this.Rotate -= MathHelper.ToRadians(RotationVelocity);
             }
+
+            
 
             //normalize vector
             if (this.Direction.Length() >= 1.0)

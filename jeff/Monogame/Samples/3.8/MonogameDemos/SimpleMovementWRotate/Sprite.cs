@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +58,7 @@ namespace SimpleMovementWRotate
         {
             //Elapsed time since last update will be used to correct movement speed
             time = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
+            
             //Time corrected move. MOves Sprite By Div every Second
             this.Location = this.Location + ((this.Direction * this.Speed) * (time / 1000));      //Simple Move PacMan by PacManDir
 
@@ -80,7 +81,7 @@ namespace SimpleMovementWRotate
                     (int)(this.Texture.Height)),
                 null,   //no source rectangle
                 Color.White,
-                MathHelper.ToRadians(this.Rotate), //rotation in radians
+                this.Rotate, //rotation in radians
                 this.Orgin,   //0,0 is top left
                 SpriteEffects.None,
                 0);
