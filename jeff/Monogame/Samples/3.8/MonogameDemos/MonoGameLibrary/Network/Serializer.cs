@@ -15,9 +15,9 @@ namespace MonoGameLibrary.Network.Serializer
         public static Byte[] SerializeObject(object obj)
         {
             MemoryStream ms = new MemoryStream();
-            BinaryFormatter bf = new BinaryFormatter();
-
-            bf.Serialize(ms, obj);
+            //BinaryFormatter bf = new BinaryFormatter();
+            //TODO this is broken
+            //bf.Serialize(ms, obj);
             return ms.ToArray();
         }
 
@@ -34,11 +34,11 @@ namespace MonoGameLibrary.Network.Serializer
         public static object DeserializeByteArray(Byte[] array, long position)
         {
             MemoryStream ms = new MemoryStream(array);
-            BinaryFormatter bf = new BinaryFormatter();
+            //BinaryFormatter bf = new BinaryFormatter();
 
             ms.Position = position;
-
-            return bf.Deserialize(ms);
+            //TODO this is broken
+            return null;// bf.Deserialize(ms);
         }
     }
 }

@@ -95,12 +95,14 @@ namespace MonoGameLibrary.Sprite
                 }
                 else
                 {
-                    throw nu;
+                    throw new Exception("Not sure how we got here!!!" + nu.ToString());
+                    //throw nu;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Not sure how we got here!!!" + ex.ToString());
+                //throw ex;
             }
         }
 

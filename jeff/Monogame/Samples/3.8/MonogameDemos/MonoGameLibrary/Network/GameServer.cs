@@ -8,6 +8,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using MonoGameLibrary.Network.Serializer;
+using System.Windows.Forms;
 
 namespace MonoGameLibrary.Network.Server
 {
@@ -120,7 +121,8 @@ namespace MonoGameLibrary.Network.Server
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    throw new Exception("Error in BeginRead: " + e.Message);
+                    
                 }
             }
         }
@@ -156,7 +158,8 @@ namespace MonoGameLibrary.Network.Server
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    throw new Exception("Error in BeginWrite: " + e.Message);
+                    
                 }
             }
         }
@@ -182,7 +185,8 @@ namespace MonoGameLibrary.Network.Server
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Error in onConnect: " + e.Message);
+                
             }
         }
 
@@ -213,7 +217,8 @@ namespace MonoGameLibrary.Network.Server
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Error in onReadHeader: " + e.Message); 
+                
             }
         }
 
@@ -271,7 +276,8 @@ namespace MonoGameLibrary.Network.Server
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Error in onWriteHeader: " + e.Message);
+                
             }
         }
 
@@ -296,7 +302,8 @@ namespace MonoGameLibrary.Network.Server
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Error in onWrite: " + e.Message);
+                
             }
         }
     }

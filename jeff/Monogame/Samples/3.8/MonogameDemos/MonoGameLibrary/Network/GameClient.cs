@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace MonoGameLibrary.Network.Client
 {
@@ -84,7 +85,8 @@ namespace MonoGameLibrary.Network.Client
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    throw new Exception("Error in BeginRead: " + e.Message);
+                    
                 }
             }
         }
@@ -107,7 +109,8 @@ namespace MonoGameLibrary.Network.Client
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    throw new Exception("Error in BeginWrite: " + e.Message);
+                    
                 }
             }
         }
@@ -125,7 +128,8 @@ namespace MonoGameLibrary.Network.Client
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Error in onReadHeader: " + e.Message);
+                
             }
         }
 
@@ -145,7 +149,8 @@ namespace MonoGameLibrary.Network.Client
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Error in onRead: " + e.Message);
+                
             }
         }
 
@@ -159,7 +164,8 @@ namespace MonoGameLibrary.Network.Client
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Error in onWriteHeader: " + e.Message);
+                
             }
         }
 
@@ -177,7 +183,8 @@ namespace MonoGameLibrary.Network.Client
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Error in onWrite: " + e.Message);
+                
             }
         }
     }
