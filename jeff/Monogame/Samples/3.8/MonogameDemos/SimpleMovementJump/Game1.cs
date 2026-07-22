@@ -14,22 +14,10 @@ namespace SimpleMovementJump
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-
         PacMan pac;
-                   
-
-
-        
-       
-        
-
-        
-
-        
 
         SpriteFont font;
-        string OutputData;
-        
+        string OutputData; 
 
         public Game1()
         {
@@ -107,13 +95,6 @@ namespace SimpleMovementJump
 
             base.Update(gameTime);
         }
-
-        
-
-        
-
-
-        
 
         /// <summary>
         /// This is called when the game should draw itself.
