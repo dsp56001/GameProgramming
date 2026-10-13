@@ -22,6 +22,7 @@ namespace MonoGameLibrary.Sprite
         public Rectangle LocationRect { get { return locationRect; } set { locationRect = value; } }    //current location used for collision
                                                                              
         public Color[] SpriteTextureData;   //Arrat for Color Data used for collision
+        public string TextureName { get; set; }
         public Texture2D spriteTexture;  //current Texture
         public Texture2D SpriteTexture
         {
@@ -87,8 +88,13 @@ namespace MonoGameLibrary.Sprite
 
         protected override void LoadContent()
         {
+
+            if (string.IsNullOrEmpty(TextureName))
+                TextureName = "pacmanSingle";       //sneaky
+            spriteTexture = this.Game.Content.Load<Texture2D>(TextureName);
+
             //Load texture for sprite Markers
-           this.SpriteMarkersTexture = this.Game.Content.Load<Texture2D>("SpriteMarker");
+            this.SpriteMarkersTexture = this.Game.Content.Load<Texture2D>("SpriteMarker");
             
             //top left orgin
             this.Origin = Vector2.Zero;

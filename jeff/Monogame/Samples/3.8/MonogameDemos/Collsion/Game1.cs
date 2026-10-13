@@ -49,7 +49,7 @@ namespace Collision
 
             redGhost = new Ghost(this, pac);
 
-            redGhost.SpriteTexture = "PurpleGhost";
+            redGhost.TextureName = "PurpleGhost";
             redGhost.ShowMarkers = true;
             this.Components.Add(redGhost);
         }

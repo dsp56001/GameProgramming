@@ -13,7 +13,8 @@ namespace PacManGameComponent
     {
 
         public enum GhostState { Chasing, Evading, Roving, Dead }
-        GhostState _state;
+        GhostState _state, _prevstate;
+        float _stateTime = 0;
 
         Texture2D ghostTexture, ghostHitTexture;
         PacMan pacMan;
@@ -58,14 +59,30 @@ namespace PacManGameComponent
 
             Location += ((this.Direction * (lastUpdateTime / 1000)) * Speed);      //Simple Move
 
+            UpdateStateTime(gameTime);
+
             UpdateLogStateToConsole();
 
             base.Update(gameTime);
         }
 
+
+        private void UpdateStateTime(GameTime gameTime)
+        {
+            if(this._prevstate != this._state)
+            {
+                this._stateTime = 0f;
+            }
+            else
+            {
+                this._stateTime += (float)gameTime.ElapsedGameTime.Milliseconds;
+            }
+            _prevstate = _state;
+        }
+
         private void UpdateLogStateToConsole()
         {
-            console.DebugTextOutput["GhostState"] = this._state.ToString();
+            console.DebugTextOutput["GhostState"] = this._state.ToString() + " " + this._stateTime.ToString();
             console.DebugTextOutput["GhostSpeed"] = this.Speed.ToString() ;
         }
 
@@ -118,6 +135,12 @@ namespace PacManGameComponent
                 //this.Direction.X = -1;
                 this.Direction.X = MathHelper.Clamp(this.Direction.X -= turnAmount, -1, 1);
             }
+
+            //PacMan too far away, stop chasing start roving
+            if (Vector2.Distance(this.Location, pacMan.Location) > pacMan.LocationRect.Width * 5)//HACK rover if ghost is 5 pacmans away 
+            {
+                this._state = GhostState.Roving;
+            }
         }
 
         protected virtual void UpdateGhostEvading()
@@ -142,6 +165,9 @@ namespace PacManGameComponent
 
         protected virtual void UpdateGhostRoving()
         {
+
+            //Change direction sometimes
+
             //check if ghost can see pacman
             Vector2 normD = Vector2.Normalize(this.Direction);
             Vector2 p = new Vector2(this.Location.X, this.Location.Y);
@@ -158,6 +184,9 @@ namespace PacManGameComponent
                 }
                 p += this.Direction;
             }
+
+            
+            
         }
 
         protected virtual void UpdateTexture()
@@ -211,5 +240,7 @@ namespace PacManGameComponent
                 this._state = GhostState.Roving;
             }
         }
+
+       
     }
 }
